@@ -32,6 +32,8 @@ In that article, Microsoft showcases two PhotoDNA hashes for the same image enco
 
 ## Legal
 jPhotoDNA was created for reserach purposes. If you wish to use PhotoDNA, reach out to Microsoft and acquire a license.
+
 PhotoDNA is a registered trademark of Microsoft Corporation.
+
 AXIOM is a registered trademark of Magnet Forensics Inc.
 
