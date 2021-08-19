@@ -1,6 +1,15 @@
 # jPhotoDNA
 CLI Java wrapper for the PhotoDNA library 
 
+## Setup
+1)	Clone this repo
+2)	Run `install.bat`
+3)	Once the setup is complete, you can generate hashes using the following syntax
+
+`jPhotoDNA.exe PhotoDNAx64.dll image.jpg`
+
+![Setup](https://github.com/jankais3r/jPhotoDNA/raw/main/setup.png)
+
 ## PhotoDNA – what is it?
 A perceptual hashing algorithm created by Hany Farid of Dartmouth College in collaboration with Microsoft Research in 2009. Designed to identify known (and derived) CSAM and used primarily by law enforcement and large internet service providers to screen user-created content. Originally an on-premise solution, Microsoft started offering it as a cloud service to selected partners in 2014. Not much is publicly known about the technology – Microsoft’s own [promo materials](https://www.microsoft.com/en-us/photodna) are extremely vague and are missing key technical details. You would be hard pressed to find even basic information such as a bit length of the resulting hashes.
 
@@ -14,15 +23,6 @@ In August 2021, Apple announced their [controversial plan](https://appleprivacyl
 
 In the same manner that [nhcalc](https://github.com/KhaosT/nhcalc) is a wrapper around Apple’s NeuralHash framework, jPhotoDNA is a wrapper around Microsoft’s PhotoDNA library. As previously mentioned, PhotoDNA is a closely guarded secret with only a limited number of organizations being granted access to the technology. However, several digital forensics vendors are shipping a DLL allowing an offline computation of PhotoDNA hashes for investigation purposes. jPhotoDNA uses such library shipped with Magnet AXIOM, a digital forensics platform that is freely available for download. There is a number of other forensic tools shipping the same library.
 
-
-## Setup
-1)	Clone this repo
-2)	Run `install.bat`
-3)	Once the setup is complete, you can generate hashes using the following syntax
-
-`jPhotoDNA.exe PhotoDNAx64.dll image.jpg`
-
-![Setup](https://github.com/jankais3r/jPhotoDNA/raw/main/setup.png)
 
 ## Validation
 Since there is a limited amount of information about PhotoDNA, how can we be sure that jPhotoDNA computes valid hashes? I found a single example of actual PhotoDNA hashes in [Microsoft’s 2013 article](https://news.microsoft.com/en-gb/2013/11/18/tacklingproliferatio/) on the topic.
