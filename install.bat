@@ -5,37 +5,14 @@ echo Welcome to the jPhotoDNA installer.
 echo The script will now setup a jPhotoDNA environment for you. Please be patient.
 
 echo.
-echo Downloading AXIOM (3.5GB, might take a while)...
-bitsadmin /transfer "Downloading AXIOM" /priority HIGH https://magnetforensics.com/download/axiom %cd%\axiom.zip > nul
+echo Downloading FTK (3.4GB, might take a while)...
+bitsadmin /transfer "Downloading FTK" /priority HIGH http://ad-iso.s3.amazonaws.com/AD_FTK_6.3.0.iso %cd%\AD_FTK_6.3.0.iso > nul
 
 echo.
-echo Extracting AXIOM Installer...
-powershell Expand-Archive axiom.zip -DestinationPath .\axiom
-
-del axiom.zip
-cd axiom
-
-echo.
-echo Downloading InnoExtract...
-bitsadmin /transfer "Downloading InnoExtract" /priority HIGH  https://constexpr.org/innoextract/files/innoextract-1.9-windows.zip %cd%\innoextract.zip > nul
-
-echo.
-echo Extracting InnoExtract...
-powershell Expand-Archive innoextract.zip -DestinationPath .
-
-echo.
-echo Extracting PhotoDNAx64.dll (might take a while)...
-for %%A in (*.exe) do (
-    set "axiom=%%~nA.exe"
-    GOTO endloop
-)
-
-:endloop
-innoextract.exe -I "app\AXIOM Process\x64\PhotoDNAx64.dll" -s -e %axiom%
-
-move "%cd%\app\AXIOM Process\x64\PhotoDNAx64.dll" %cd%\..
-cd ..
-rmdir /s /q "%cd%\axiom"
+echo Extracting PhotoDNAx64.dll.
+powershell.exe -Command "&{$beforeMount = (Get-Volume).DriveLetter; $mountResult = Mount-DiskImage %cd%\\AD_FTK_6.3.0.iso; $afterMount = (Get-Volume).DriveLetter; $setupPath = \"$(($afterMount -join '').replace(($beforeMount -join ''), '')):\FTK\FTK\x64\{8A89F096-3685-47E2-AFAE-48F7E3FC5A05}\Data1.cab\"; $finalString = expand $setupPath /f:photodnax64.1.72.dll %cd%; Get-Volume ($setupPath.Replace(\":\FTK\FTK\x64\{8A89F096-3685-47E2-AFAE-48F7E3FC5A05}\Data1.cab\", \"\")) | Get-DiskImage | Dismount-DiskImage }" > nul
+del AD_FTK_6.3.0.iso
+rename photodnax64.1.72.dll PhotoDNAx64.dll
 
 echo.
 echo Downloading jPhotoDNA
