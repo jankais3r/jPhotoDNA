@@ -21,7 +21,7 @@ Author’s [high-level description](https://farid.berkeley.edu/downloads/publica
 ## Call for transparency
 In August 2021, Apple announced their [controversial plan](https://appleprivacyletter.com/) to deploy CSAM scanning agent to more than 1 billion iOS devices with the next OS release. Their decision to do the scanning locally on people’s devices instead of on their own servers like virtually everybody else in the industry lead to renewed calls for more transparency on the topic. PhotoDNA claims to have false positive rate of 1 in 50 billion, but thanks to Microsoft’s approach to security via obscurity, it has been historically difficult to verify such claims. Since Apple’s solution is designed to run on edge devices, it [didn’t take long](https://twitter.com/KhaosT/status/1424205967122571268) until somebody put together a wrapper utilizing the official framework’s API to generate NeuralHash hashes from arbitrary images. This is an important step in verifying the algorithm’s performance, but does little to alleviate the risk of totalitarian governments around the world passing laws adapting the same scanning mechanism to look for dissident or LGBT-themed images.
 
-In the same manner that [nhcalc](https://github.com/KhaosT/nhcalc) is a wrapper around Apple’s NeuralHash framework, jPhotoDNA is a wrapper around Microsoft’s PhotoDNA library. As previously mentioned, PhotoDNA is a closely guarded secret with only a limited number of organizations being granted access to the technology. However, several digital forensics vendors are shipping a DLL allowing an offline computation of PhotoDNA hashes for investigation purposes. jPhotoDNA uses such library shipped with Magnet AXIOM, a digital forensics platform that is freely available for download. There is a number of other forensic tools shipping the same library.
+In the same manner that [nhcalc](https://github.com/KhaosT/nhcalc) is a wrapper around Apple’s NeuralHash framework, jPhotoDNA is a wrapper around Microsoft’s PhotoDNA library. As previously mentioned, PhotoDNA is a closely guarded secret with only a limited number of organizations being granted access to the technology. However, several digital forensics vendors are shipping a DLL allowing an offline computation of PhotoDNA hashes for investigation purposes. jPhotoDNA uses such library shipped with AccessData FTK, a digital forensics platform that is freely available for download. There is a number of other forensic tools shipping the same library.
 
 
 ## Validation
@@ -35,5 +35,5 @@ jPhotoDNA was created for reserach purposes. If you wish to use PhotoDNA, reach 
 
 PhotoDNA is a registered trademark of Microsoft Corporation.
 
-AXIOM is a registered trademark of Magnet Forensics Inc.
+FTK is a registered trademark of AccessData.
 
