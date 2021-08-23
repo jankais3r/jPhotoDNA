@@ -30,6 +30,9 @@ Since there is a limited amount of information about PhotoDNA, how can we be sur
 In that article, Microsoft showcases two PhotoDNA hashes for the same image encoded in JPG and GIF formats. jPhotoDNA’s hash of the image that I grabbed from that article closely resembles the official hashes.
 ![Hash validation](https://github.com/jankais3r/jPhotoDNA/raw/main/validation.png)
 
+## Hash comparison
+jPhotoDNA can only be used to generate PhotoDNA hashes. To compare the generated hashes in order to determine the similarity of different images, check out [photodna-matcher](https://github.com/gabedwrds/photodna-matcher).
+
 ## Legal
 jPhotoDNA was created for reserach purposes. If you wish to use PhotoDNA, reach out to Microsoft and acquire a license.
 
