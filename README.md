@@ -10,6 +10,13 @@ CLI Java wrapper for the PhotoDNA library
 
 ![Setup](https://github.com/jankais3r/jPhotoDNA/raw/main/setup.png)
 
+
+You can also generate hashes for multiple images at once using the provided Python script. The Python script outputs base64-encoded hashes for easier handling.
+
+`python generateHashes.py`
+
+![Generating hashes with Python](https://github.com/jankais3r/jPhotoDNA/raw/main/generate.png)
+
 ## PhotoDNA – what is it?
 A perceptual hashing algorithm created by Hany Farid of Dartmouth College in collaboration with Microsoft Research in 2009. Designed to identify known (and derived) CSAM and used primarily by law enforcement and large internet service providers to screen user-created content. Originally an on-premise solution, Microsoft started offering it as a cloud service to selected partners in 2014. Not much is publicly known about the technology – Microsoft’s own [promo materials](https://www.microsoft.com/en-us/photodna) are extremely vague and are missing key technical details. You would be hard pressed to find even basic information such as a bit length of the resulting hashes.
 
