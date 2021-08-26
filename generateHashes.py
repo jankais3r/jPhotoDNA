@@ -11,21 +11,20 @@ import multiprocessing
 
 inputFolder = r'C:\images\to\be\hashed'
 
-def generateHash(imageFile):
+def generateHash(outputFolder, imageFile):
 	workerId = multiprocessing.current_process().name
-	with open(os.path.join(outputFolder, workerId + '.txt'), 'a', encoding = 'utf8') as outputFile:
-		result = subprocess.run([os.path.join(os.getcwd(), 'jPhotoDNA.exe') , os.path.join(os.getcwd(), 'PhotoDNAx64.dll'), imageFile], stdout = subprocess.PIPE)
-		fileName = result.stdout.decode('utf-8').split('|')[0]
-		hashString = result.stdout.decode('utf-8').split('|')[1].replace('\r\n', '')
+	result = subprocess.run([os.path.join(outputFolder, 'jPhotoDNA.exe'), os.path.join(outputFolder, 'PhotoDNAx64.dll'), imageFile], stdout = subprocess.PIPE)
+	fileName = result.stdout.decode('utf-8').split('|')[0]
+	hashString = result.stdout.decode('utf-8').split('|')[1].replace('\r\n', '')
 
-		hashList = hashString.split(',')
-		for i, hashPart in enumerate(hashList):
-			hashList[i] = int(hashPart).to_bytes((len(hashPart) + 7) // 8, 'big')
-		hashBytes = b''.join(hashList)
-		#print(fileName + ',' + base64.b64encode(hashBytes).decode('utf-8'))
-		
-		with open(os.path.join(outputFolder, workerId + '.txt'), 'a', encoding = 'utf8') as outputFile:
-			outputFile.write(fileName + ',' + base64.b64encode(hashBytes).decode('utf-8') + '\n')
+	hashList = hashString.split(',')
+	for i, hashPart in enumerate(hashList):
+		hashList[i] = int(hashPart).to_bytes((len(hashPart) + 7) // 8, 'big')
+	hashBytes = b''.join(hashList)
+	#print(fileName + ',' + base64.b64encode(hashBytes).decode('utf-8'))
+	
+	with open(os.path.join(outputFolder, workerId + '.txt'), 'a', encoding = 'utf8') as outputFile:
+		outputFile.write(fileName + ',' + base64.b64encode(hashBytes).decode('utf-8') + '\n')
 
 if __name__ == '__main__':
 	outputFolder = os.getcwd()
@@ -44,7 +43,7 @@ if __name__ == '__main__':
 	images.extend(glob.glob(os.path.join(inputFolder, '**', '*.bmp'), recursive = True))
 	for f in images:
 		imageCount = imageCount + 1
-		p.apply_async(generateHash, [f])
+		p.apply_async(generateHash, [outputFolder, f])
 	p.close()
 	p.join()
 		
