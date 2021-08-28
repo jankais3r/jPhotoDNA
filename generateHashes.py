@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import sys
 import glob
 import time
 import base64
@@ -11,11 +12,11 @@ import multiprocessing
 
 inputFolder = r'C:\images\to\be\hashed'
 
-def generateHash(outputFolder, imageFile):
+def generateHash(outputFolder, appName, libName, imageFile):
 	workerId = multiprocessing.current_process().name
-	result = subprocess.run([os.path.join(outputFolder, 'jPhotoDNA.exe'), os.path.join(outputFolder, 'PhotoDNAx64.dll'), imageFile], stdout = subprocess.PIPE)
+	result = subprocess.run([os.path.join(outputFolder, appName), os.path.join(outputFolder, libName), imageFile], stdout = subprocess.PIPE)
 	fileName = result.stdout.decode('utf-8').split('|')[0]
-	hashString = result.stdout.decode('utf-8').split('|')[1].replace('\r\n', '')
+	hashString = result.stdout.decode('utf-8').split('|')[1].replace('\r\n', '').replace('\n', '')
 
 	hashList = hashString.split(',')
 	for i, hashPart in enumerate(hashList):
@@ -28,8 +29,17 @@ def generateHash(outputFolder, imageFile):
 
 if __name__ == '__main__':
 	outputFolder = os.getcwd()
+	if sys.platform == "win32":
+		appName = 'jPhotoDNA.exe'
+		libName = 'PhotoDNAx64.dll'
+	elif sys.platform == "darwin":
+		appName = 'jPhotoDNA.app/Contents/MacOS/jPhotoDNA'
+		libName = 'PhotoDNAx64.so'
+	else:
+		print("Linux is not supported.")
+		quit()
 	if (inputFolder == r'C:\images\to\be\hashed'):
-		print('Please update the input folder path on row 12.')
+		print('Please update the input folder path on row 13.')
 		quit()
 	startTime = time.time()
 	print('Generating hashes for all images under ' + inputFolder)
@@ -43,7 +53,7 @@ if __name__ == '__main__':
 	images.extend(glob.glob(os.path.join(inputFolder, '**', '*.bmp'), recursive = True))
 	for f in images:
 		imageCount = imageCount + 1
-		p.apply_async(generateHash, [outputFolder, f])
+		p.apply_async(generateHash, [outputFolder, appName, libName, f])
 	p.close()
 	p.join()
 		
