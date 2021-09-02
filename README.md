@@ -1,5 +1,8 @@
 # jPhotoDNA
-CLI Java wrapper for the PhotoDNA library 
+CLI Java wrapper for the PhotoDNA library
+
+
+#### 🚨🚨🚨 If you care about performance, I recommend to use [pyPhotoDNA](https://github.com/jankais3r/pyPhotoDNA) instead. pyPhotoDNA does not have to spin up JVM for every image, and therefore is more than 40x faster than jPhotoDNA.
 
 ## Setup
 1)	Clone this repo
