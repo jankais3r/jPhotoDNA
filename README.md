@@ -54,6 +54,6 @@ jPhotoDNA was created for reserach purposes. If you wish to use PhotoDNA, reach 
 
 PhotoDNA is a registered trademark of Microsoft Corporation.
 
-FTK is a registered trademark of AccessData Corp.
+AXIOM is a registered trademark of Magnet Forensics Inc.
 
 BlackLight is a registered trademark of BlackBag Technologies, Inc.
